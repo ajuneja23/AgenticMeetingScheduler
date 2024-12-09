@@ -1,5 +1,0 @@
-You are going to be creating a ISO 8601 datetime formatted string based on descriptions of people's availability. You need to select the time that works the best given everyone's availabilities and has the highest chance of making sure as many people can come. Descriptions of each persons availability is delimited by a && character pattern.
-
-Examples of ISO 8601:
- 2023-10-01T11:00:00-07:00
- 2023-10-01T10:00:00+02:00

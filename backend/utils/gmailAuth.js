@@ -5,13 +5,17 @@ import { authenticate } from "@google-cloud/local-auth";
 import { google } from "googleapis";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import dotenv from "dotenv";
 
 const SCOPES = [
   "https://www.googleapis.com/auth/gmail.send",
   "https://www.googleapis.com/auth/gmail.readonly",
+  "https://www.googleapis.com/auth/calendar",
 ];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, "../.env") });
 
 const token_path = path.join(__dirname, "./credentials/token.json");
 const credential_path = path.join(__dirname, "./credentials/credentials.json");
@@ -64,8 +68,9 @@ async function authorize() {
   return client;
 }
 
-/*authorize().then((client) => {
+(async () => {
+  const client = await authorize();
   console.log(client.credentials.refresh_token);
-});*/
+})();
 
 export { getCredentials, saveCredentials, authorize };

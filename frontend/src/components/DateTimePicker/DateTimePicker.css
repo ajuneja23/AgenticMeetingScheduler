@@ -1,0 +1,127 @@
+/* DateTimePicker.css */
+.datetime-picker-container {
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 40px;
+  border-radius: 12px;
+  background: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-family: "Arial", sans-serif;
+  width: 90%;
+}
+
+.picker-title {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.timezone-selector {
+  margin-bottom: 25px;
+}
+
+.timezone-selector label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.timezone-select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.timezone-select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.25);
+}
+
+.rdt {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  color: #555;
+  font-size: 1.1rem;
+  margin: 15px 0;
+}
+
+.rdtPicker {
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+}
+
+.rdt input {
+  padding: 15px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+}
+
+.rdt input:focus {
+  border: 2px solid #007bff;
+  box-shadow: 0 0 6px #007bff;
+}
+
+.selected-date {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  color: #555;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.rdtDay:hover,
+.rdtHour:hover,
+.rdtMinute:hover,
+.rdtSecond:hover {
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.rdtActive {
+  background: #007bff !important;
+  color: white !important;
+}
+
+/* Add more spacing for time picker */
+.rdtTime {
+  padding: 15px;
+}
+
+.rdtTime .rdtCount {
+  height: 35px;
+  line-height: 35px;
+  margin: 5px 0;
+}
+
+.rdtTime .rdtBtn {
+  padding: 8px;
+  margin: 3px;
+  border-radius: 4px;
+}
+
+.rdtCounter {
+  padding: 5px;
+}
+
+.rdtCounter .rdtCount {
+  font-size: 1.2rem;
+  padding: 8px 0;
+}

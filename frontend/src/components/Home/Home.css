@@ -1,0 +1,105 @@
+/* Global Styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle, #b53fbe, #000);
+  color: #fff;
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: hidden; /* Prevent vertical scrolling */
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* App Container */
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the container fills the full viewport height */
+  text-align: center;
+  background: radial-gradient(circle, #b53fbe, #000);
+}
+
+/* Navigation Bar */
+.navbar {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: transparent;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 50px;
+  font-weight: bolder;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 50px;
+}
+
+.try-now {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.try-now:hover {
+  background: #f0f0f0;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.firstheader {
+  font-size: 2.5vh; /* Scale text size based on viewport height */
+  margin-bottom: 20px;
+}
+
+.firstheader .coloredTitle {
+  color: #1637af;
+}
+
+.headline {
+  font-size: 7vh; /* Larger scaling for dynamic font size */
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.3;
+  color: white;
+}

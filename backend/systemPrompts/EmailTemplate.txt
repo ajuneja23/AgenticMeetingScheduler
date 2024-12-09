@@ -1,0 +1,10 @@
+Hi ${recipientName}
+
+Your presence has been requested for a meeting at ${location}. Please provide your availability by replying to this email.
+Please reply to this email with your availability in the time frame ${startDate} to ${endDate}. Please input your time availability in the ${timeZone} time zone. Here is a message the organizer has left for you:
+${description}
+
+Your response will be processed automatically to help find the best meeting time for everyone.
+
+Best regards,
+Meeting Scheduler Bot

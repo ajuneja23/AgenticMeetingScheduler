@@ -30,3 +30,9 @@ export async function insertTimePreference(req, res) {
 }
 
 export default insertTimePreference;
+/*
+schedule event+send emails 
+
+cron job to parse emails + gcal scheduling
+
+*/
