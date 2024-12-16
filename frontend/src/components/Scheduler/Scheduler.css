@@ -1,8 +1,9 @@
-/* Reset default styles */
+/* Add some color and design to make it look sexy! */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html,
@@ -14,7 +15,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: white;
+  background: #f5f5f5; /* Add a light gray background */
   overflow: hidden;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -22,26 +23,29 @@ body {
 
 .Scheduler {
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
+  background-color: white;
   display: flex; /* Use flexbox for layout */
   flex-direction: column; /* Arrange elements vertically */
-  background-color: white;
+  background-color: #fff;
   align-items: center; /* Center align the elements */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 h1 {
   font-size: 2.5rem; /* Increase the font size of h1 */
   margin-bottom: 1.5rem;
   color: #333;
+  font-weight: 700; /* Use a bold font for headings */
 }
 
 h2 {
   font-size: 2rem; /* Increase the font size of h2 */
   margin-bottom: 1rem;
   color: #444;
+  font-weight: 600; /* Use a bold font for headings */
 }
 
 button {
@@ -53,10 +57,11 @@ button {
   font-size: 1.2rem; /* Increase the font size of buttons */
   cursor: pointer;
   transition: background-color 0.2s;
+  font-weight: 600; /* Use a bold font for buttons */
 }
 
 button:hover {
-  background-color: #3367d6;
+  background-color: #4285f4;
 }
 
 input[type="email"] {
@@ -66,115 +71,77 @@ input[type="email"] {
   border-radius: 4px;
   width: 350px; /* Increase the width of email inputs */
   margin-right: 1rem;
+  font-weight: 600; /* Use a bold font for email inputs */
 }
 
+.locationdescriptiondiv {
+  padding-bottom: 1rem;
+}
+.location-description-input {
+  padding: 0.8rem;
+  font-size: 1.2rem; /* Increase the font size of email inputs */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 550px; /* Increase the width of email inputs */
+  margin-right: 1rem;
+  font-weight: 600; /* Use a bold font for email inputs */
+  padding-bottom: 20px;
+}
 input[type="email"]:focus {
   outline: none;
   border-color: #4285f4;
   box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
 }
 
-.react-datetime-picker {
-  font-size: 1.2rem; /* Increase the font size of the date/time picker */
+/* Positioning and base styles for the welcome container */
+.welcome {
+  position: absolute;
+  cursor: pointer;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: #555;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block; /* Ensure layout integrity */
 }
 
-.react-datetime-picker__wrapper {
-  padding: 0.5rem;
-  border: 1px solid #ddd !important;
-  border-radius: 4px;
+/* Style for the h2 element inside .welcome */
+.welcome h2 {
+  margin: 0;
+  transition: color 0.3s ease; /* Smooth color transition */
 }
 
-div[style*="color: red"] {
-  color: #d93025 !important;
-  font-size: 1rem; /* Increase the font size of error messages */
-  margin-top: 0.5rem;
-}
-
-/* Add some spacing between elements */
-div[style*="margin: 20px"] > * + * {
-  margin-top: 2rem; /* Increase the spacing between elements */
-}
-
-/* Style the email list container */
-div[style*="margin: 10px 0"] {
-  display: flex;
-  justify-content: center; /* Center align the email list */
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5rem; /* Increase the spacing between email list items */
-}
-/* DateTimePicker Styling */
-.react-datetime-picker {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.react-datetime-picker__wrapper {
-  border: 2px solid #4285f4 !important;
-  border-radius: 8px;
-  padding: 8px 12px;
-  transition: all 0.2s ease;
-}
-
-.react-datetime-picker__wrapper:hover {
-  border-color: #3367d6 !important;
-}
-
-.react-datetime-picker__inputGroup {
-  font-size: 1.1rem;
-  padding: 4px;
-}
-
-.react-datetime-picker__button {
-  padding: 4px;
-}
-
-.react-datetime-picker__button:hover {
-  background-color: #f1f3f4;
-  border-radius: 4px;
-}
-
-.react-datetime-picker__button svg {
-  stroke: #4285f4;
-}
-
-.react-datetime-picker__calendar {
-  width: 350px !important;
-  border: none !important;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  font-family: inherit;
-}
-
-.react-calendar {
-  border: none !important;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.react-calendar__tile {
-  padding: 12px;
+/* Base style for the sign-out message */
+.sign-out {
+  display: none; /* Initially hidden */
   font-size: 1rem;
-}
-
-.react-calendar__tile--active {
-  background: #4285f4 !important;
+  color: black; /* Red color for the sign-out text */
+  position: absolute; /* Positioned relative to .welcome */
+  top: 2rem; /* Adjust position as needed */
+  right: 0;
+  background: #fff; /* Background for better visibility */
+  border: 1px solid #ddd;
+  padding: 0.5rem;
   border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth appearance */
+  opacity: 0;
+  transform: translateY(-10px); /* Slight upward movement */
 }
 
-.react-calendar__tile:hover {
-  background-color: #f1f3f4;
-  border-radius: 4px;
+/* Display sign-out when hovering over .welcome */
+.welcome:hover .sign-out {
+  display: block; /* Show the sign-out */
+  opacity: 1;
+  transform: translateY(0); /* Reset upward movement */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth appearance */
 }
 
-.react-calendar__navigation button:hover {
-  background-color: #f1f3f4;
-  border-radius: 4px;
+.sign-out:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.react-datetime-picker__clock {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.welcome:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

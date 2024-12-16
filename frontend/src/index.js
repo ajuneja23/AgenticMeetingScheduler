@@ -7,8 +7,6 @@ import { SessionContextProvider } from "@supabase/auth-helpers-react";
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
-console.log(supabaseUrl);
-console.log(supabaseKey);
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

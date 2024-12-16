@@ -12,6 +12,13 @@ const DateTimePicker = ({
   setEndDate,
   timezone,
   setTimezone,
+  emails,
+  organizerEmail,
+  duration,
+  setDuration,
+  validateEmail,
+  location,
+  description,
 }) => {
   const handleStartDateChange = (date) => {
     setStartDate(moment(date).tz(timezone));
@@ -25,17 +32,65 @@ const DateTimePicker = ({
     setTimezone(e.target.value);
   };
 
-  const handleLogData = () => {
-    console.log({
-      timezone,
-      startDate: startDate?.format("MMMM Do YYYY, h:mm:ss a z"),
-      endDate: endDate?.format("MMMM Do YYYY, h:mm:ss a z"),
-    });
+  const handleDurationChange = (e) => {
+    setDuration(e.target.value);
+  };
+
+  const handleLogData = async () => {
+    try {
+      for (let i = 0; i < emails.length; i++) {
+        emails[i] = emails[i].toLowerCase();
+        if (!validateEmail(emails[i])) {
+          alert("Please enter valid email addresses.BRUH");
+          return;
+        }
+        organizerEmail = organizerEmail.toLowerCase();
+        if (!validateEmail(organizerEmail)) {
+          console.log(organizerEmail);
+          alert("Please enter a valid email address.SKIB");
+          return;
+        }
+        if (isNaN(duration)) {
+          alert("Please enter a valid duration.");
+          return;
+        }
+        if (!startDate.isValid() || !endDate.isValid()) {
+          alert("Please enter valid start and end dates.");
+          return;
+        }
+        if (startDate > endDate) {
+          alert("Start date must be before end date.");
+          return;
+        }
+      }
+      const body = {
+        emails: emails,
+        userEmail: organizerEmail,
+        startDate: startDate?.format(),
+        endDate: endDate?.format(),
+        location: location,
+        description: description,
+        timezone,
+        duration,
+      };
+      console.log(body);
+      console.log(process.env.REACT_APP_BACKEND_API);
+      const response = await fetch(process.env.REACT_APP_BACKEND_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      alert("Emails sent successfully!");
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   return (
     <div className="datetime-picker-container">
-      <h2 className="picker-title">Select Date & Time Range</h2>
+      <h2 className="picker-title">Select Appropriate Meeting Window</h2>
 
       <div className="timezone-selector">
         <label htmlFor="timezone">Timezone:</label>
@@ -55,31 +110,38 @@ const DateTimePicker = ({
 
       <div className="datetime-inputs">
         <div className="datetime-input-group">
-          <label className="datetime-label">Start Date & Time:</label>
+          <label className="datetime-label"></label>
           <Datetime
             value={startDate}
             onChange={handleStartDateChange}
             inputProps={{
-              placeholder: "Select start date and time",
+              placeholder: "Select candidate window start",
               className: "datetime-input",
             }}
           />
         </div>
 
         <div className="datetime-input-group">
-          <label className="datetime-label">End Date & Time:</label>
+          <label className="datetime-label"> </label>
           <Datetime
             value={endDate}
             onChange={handleEndDateChange}
             inputProps={{
-              placeholder: "Select end date and time",
+              placeholder: "Select candidate window end",
               className: "datetime-input",
             }}
           />
         </div>
 
         <div className="datetime-input-group">
-          <label className="datetime-label">Email:</label>
+          <label className="datetime-label"></label>
+          <input
+            type="number"
+            value={duration}
+            onChange={handleDurationChange}
+            placeholder="Enter duration in minutes"
+            className="datetime-input"
+          />
         </div>
 
         <button
@@ -95,7 +157,7 @@ const DateTimePicker = ({
             cursor: "pointer",
           }}
         >
-          Log Data
+          Send Scheduling Emails
         </button>
       </div>
 
@@ -110,6 +172,9 @@ const DateTimePicker = ({
             <p>
               <strong>End:</strong>{" "}
               {endDate.format("MMMM Do YYYY, h:mm:ss a z")}
+            </p>
+            <p>
+              <strong>Duration:</strong> {duration} minutes
             </p>
             <p>
               <strong>Timezone:</strong> {timezone}

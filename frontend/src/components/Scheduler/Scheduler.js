@@ -5,15 +5,19 @@ import {
   useSessionContext,
 } from "@supabase/auth-helpers-react";
 import DateTimePicker from "../DateTimePicker/DateTimePicker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment-timezone";
 
 function Scheduler() {
-  const [emails, setEmails] = useState([""]);
-  const [errors, setErrors] = useState([""]);
+  const [emails, setEmails] = useState([]);
+  const [errors, setErrors] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [timezone, setTimezone] = useState(moment.tz.guess());
+  const [duration, setDuration] = useState(null);
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   const validateEmail = (email) => {
     return String(email)
@@ -25,14 +29,14 @@ function Scheduler() {
     const newEmails = [...emails];
     newEmails[index] = value;
     setEmails(newEmails);
-
-    // Validate and set errors
-    const newErrors = [...errors];
-    newErrors[index] = validateEmail(value) ? "" : "Invalid email format";
-    setErrors(newErrors);
   };
 
   const addNewEmail = () => {
+    if (!validateEmail(emails[emails.length - 1]) && emails.length > 0) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     if (emails.length < 5) {
       setEmails([...emails, ""]);
       setErrors([...errors, ""]);
@@ -45,65 +49,14 @@ function Scheduler() {
     setEmails(newEmails);
     setErrors(newErrors);
   };
-
-  const logData = () => {
-    console.log({
-      emails: emails,
-      userEmail: session.user.email,
-      startDate: startDate?.toISOString(),
-      endDate: endDate?.toISOString(),
-      timezone: timezone,
-    });
-    // Check if both dates are selected and end date is after start date
-    if (startDate && endDate) {
-      if (endDate.isAfter(startDate)) {
-        alert("Scheduling Emails Sent.");
-      } else {
-        alert("Error: End date must be after start date.");
-      }
-    }
-  };
-
-  const inputFields = (
-    <div style={{ margin: "20px" }}>
-      <h2>Email List</h2>
-      {emails.map((email, index) => (
-        <div key={index} style={{ margin: "10px 0" }}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => handleEmailChange(index, e.target.value)}
-            style={{ marginRight: "10px" }}
-          />
-          <button onClick={() => removeEmail(index)}>Remove</button>
-          {errors[index] && <div style={{ color: "red" }}>{errors[index]}</div>}
-        </div>
-      ))}
-      {emails.length < 5 && (
-        <button onClick={addNewEmail}>Add New Email</button>
-      )}
-      <button onClick={logData} style={{ marginLeft: "10px" }}>
-        Log Emails
-      </button>
-
-      <div style={{ marginTop: "20px" }}>
-        <h2>Select Time Frame</h2>
-        <DateTimePicker
-          startDate={startDate}
-          setStartDate={setStartDate}
-          endDate={endDate}
-          setEndDate={setEndDate}
-          timezone={timezone}
-          setTimezone={setTimezone}
-        />
-      </div>
-    </div>
-  );
-
   const session = useSession(); //tokens
   const supabase = useSupabaseClient(); //talk to supabase
-  console.log(session);
+
+  useEffect(() => {
+    if (session) {
+      setUserEmail(session.user.email);
+    }
+  }, [session]);
   async function googleSignIn() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -112,6 +65,7 @@ function Scheduler() {
         redirectTo: window.location.origin + "/scheduler",
       },
     });
+    console.log(userEmail);
     if (error) {
       alert("Error logging in to Google provider with Supabase");
       console.log(error);
@@ -121,20 +75,92 @@ function Scheduler() {
   async function googleSignOut() {
     await supabase.auth.signOut();
   }
+  const inputFields = (
+    <div style={{ margin: "20px" }}>
+      <h2>Meeting Details</h2>
+      <div className="locationdescriptiondiv">
+        <input
+          type="text"
+          placeholder="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          className="location-description-input"
+        />
+      </div>
+      <div className="locationdescriptiondiv">
+        <input
+          type="text"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="location-description-input"
+        />
+      </div>
+      {emails.map((email, index) => (
+        <div key={index} style={{ margin: "10px 0" }}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => handleEmailChange(index, e.target.value)}
+            style={{ marginRight: "10px" }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                addNewEmail();
+              }
+            }}
+          />
+          <button
+            onClick={() => removeEmail(index)}
+            onKeyDown={(e) => {
+              if (e.key === "Delete" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                removeEmail(index);
+              }
+            }}
+          >
+            Remove
+          </button>
+          {errors[index] && <div style={{ color: "red" }}>{errors[index]}</div>}
+        </div>
+      ))}
+      {emails.length < 5 && (
+        <button onClick={addNewEmail}>Add New Invitee</button>
+      )}
+
+      <div style={{ marginTop: "20px" }}>
+        <DateTimePicker
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          timezone={timezone}
+          setTimezone={setTimezone}
+          duration={duration}
+          setDuration={setDuration}
+          validateEmail={validateEmail}
+          emails={emails}
+          organizerEmail={userEmail}
+          location={location}
+          description={description}
+        />
+      </div>
+    </div>
+  );
   return (
     <div className="Scheduler">
-      <h1>Calendar access</h1>
       <div>
         {session ? (
           <>
-            {" "}
-            <h2>Hi {session.user.email}</h2>
-            <button onClick={googleSignOut}>Sign out</button>
+            <div className="welcome" onClick={googleSignOut}>
+              <h2>{session.user.email}</h2>
+              <span className="sign-out">Sign out?</span>
+            </div>
             {inputFields}
           </>
         ) : (
           <>
-            <h1>hi</h1>
             <button onClick={googleSignIn}>Sign in with Google</button>
           </>
         )}
@@ -145,7 +171,6 @@ function Scheduler() {
 
 export default Scheduler;
 /*
-todo: 
 
 2 backend funcs: create the event, and cron job to schedule the event. 
 */
