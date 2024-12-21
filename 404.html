@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirect</title>
     <script>
-      // Redirect to index.html to allow React Router to handle routing
-      window.location.replace("/index.html");
+      const path = window.location.pathname;
+      localStorage.setItem("redirect", path);
+      window.location.href = "/AgenticMeetingScheduler";
     </script>
   </head>
-  <body>
-    <p>Redirecting...</p>
-  </body>
 </html>
