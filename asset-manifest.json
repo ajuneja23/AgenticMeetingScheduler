@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/AgenticMeetingScheduler/static/css/main.ddb4c9ce.css",
-    "main.js": "/AgenticMeetingScheduler/static/js/main.aebc1560.js",
+    "main.js": "/AgenticMeetingScheduler/static/js/main.b0e40a06.js",
     "static/js/288.4d688d3c.chunk.js": "/AgenticMeetingScheduler/static/js/288.4d688d3c.chunk.js",
     "index.html": "/AgenticMeetingScheduler/index.html",
     "main.ddb4c9ce.css.map": "/AgenticMeetingScheduler/static/css/main.ddb4c9ce.css.map",
-    "main.aebc1560.js.map": "/AgenticMeetingScheduler/static/js/main.aebc1560.js.map",
+    "main.b0e40a06.js.map": "/AgenticMeetingScheduler/static/js/main.b0e40a06.js.map",
     "288.4d688d3c.chunk.js.map": "/AgenticMeetingScheduler/static/js/288.4d688d3c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ddb4c9ce.css",
-    "static/js/main.aebc1560.js"
+    "static/js/main.b0e40a06.js"
   ]
 }
