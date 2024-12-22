@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/AgenticMeetingScheduler/static/css/main.bae9e848.css",
-    "main.js": "/AgenticMeetingScheduler/static/js/main.a97792e7.js",
+    "main.css": "/AgenticMeetingScheduler/static/css/main.0d8c61df.css",
+    "main.js": "/AgenticMeetingScheduler/static/js/main.79680c65.js",
     "static/js/288.4d688d3c.chunk.js": "/AgenticMeetingScheduler/static/js/288.4d688d3c.chunk.js",
     "index.html": "/AgenticMeetingScheduler/index.html",
-    "main.bae9e848.css.map": "/AgenticMeetingScheduler/static/css/main.bae9e848.css.map",
-    "main.a97792e7.js.map": "/AgenticMeetingScheduler/static/js/main.a97792e7.js.map",
+    "main.0d8c61df.css.map": "/AgenticMeetingScheduler/static/css/main.0d8c61df.css.map",
+    "main.79680c65.js.map": "/AgenticMeetingScheduler/static/js/main.79680c65.js.map",
     "288.4d688d3c.chunk.js.map": "/AgenticMeetingScheduler/static/js/288.4d688d3c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bae9e848.css",
-    "static/js/main.a97792e7.js"
+    "static/css/main.0d8c61df.css",
+    "static/js/main.79680c65.js"
   ]
 }
